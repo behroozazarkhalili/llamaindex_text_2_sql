@@ -15,14 +15,14 @@ from llama_index.llms.openai import OpenAI
 
 logging.getLogger("root").setLevel(logging.WARNING)
 
-import os
-
 if 'OPENAI_API_KEY' in os.environ:
     print("OPENAI_API_KEY is set")
 else:
     print("OPENAI_API_KEY is not set")
-    with 
-    os.environ['OPENAI_API_KEY'] = 
+    with open('../api_info/api_info.json', 'r', encoding='utf-8') as f:
+        api_info = json.load(f)
+        
+        os.environ['OPENAI_API_KEY'] = api_info.get('openai_api_key')
 
 
 _spaces = re.compile(r"\s+")
